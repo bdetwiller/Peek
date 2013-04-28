@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  start: 2013-04-27 19:57:11
+  end: 2013-04-27 19:57:11
+  latitude: 
+  longitude: 9.99
+
+two:
+  name: MyString
+  start: 2013-04-27 19:57:11
+  end: 2013-04-27 19:57:11
+  latitude: 
+  longitude: 9.99
