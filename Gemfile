@@ -20,9 +20,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'thin'
+
 gem 'jquery-rails'
 gem 'backbone-rails'
 gem 'rest-client'
+gem 'flatui-rails'
+gem 'instagram'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
