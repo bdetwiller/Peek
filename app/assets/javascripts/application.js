@@ -17,8 +17,10 @@
 //= require jquery_ujs
 //= require backbone-rails
 //
+//= require flat-ui
+//
 // Your top-level namespace:
-// require todo
+//=require insta_app
 //
 // Directories with Backbone classes:
 // require_tree ./models
