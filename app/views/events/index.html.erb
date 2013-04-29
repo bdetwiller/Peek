@@ -1,25 +1,31 @@
-      
-      
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Photomap</title>
-    
+
     <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map { height: 100% }
+      html, body { height: 100%; width: 100%; }
+      #map {
+          display:block;
+          position:absolute;
+          height:auto;
+          bottom:0;
+          top:12%;
+          left:0;
+          right:50%;
+         /* margin-top:50px;*/
+      }
+      #map img { max-width: none; }
     </style>
-    
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg&sensor=true">
     </script>
 
     <script type="text/javascript">
     $(function () {
-      
       window.App.initialize();
-
-
     });
   </script>
 
@@ -27,43 +33,24 @@
 
   </head>
   <body>
-   <div class="navbar ">
-    <div class="navbar-inner"> 
-    	<h1>See what's happening</h1>
-      <div class="container">
-          <ul class="nav">
-            <li>
-              <a href="#events">
-                Events nearby
-              </a>
-            </li>
-            <li>
-              <a href="#friends">
-                Friends
-              </a>
-            </li>
-            <li>
-              <a href="#lists">
-                Lists
-              </a>
-            </li>
-          </ul>
-      </div>
+
+    <div id="map"></div>
+
+
+
+    <div class="gallery">
     </div>
-   </div>
-
-    <div id="map"/>
-
   </body>
 </html>
 
 
 
-<!-- 
-maps api key: AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg 
+<!--
+maps api key: AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg
 https://developers.google.com/maps/documentation/javascript/events
 https://developers.google.com/places/documentation/autocomplete
 http://api.eventful.com/
 http://instagram.com/developer/endpoints/locations/
-http://instagram.com/developer/endpoints/media/ 
+http://instagram.com/developer/endpoints/media/
+https://github.com/ropiku/omniauth-instagram
 -->

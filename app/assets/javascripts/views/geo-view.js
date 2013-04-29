@@ -1,6 +1,6 @@
 App.Views.Geo = Backbone.View.extend({
 	event: {
-	 "click": "recent_user"	
+	 "click": "recent_user"
 
 	},
 
@@ -9,30 +9,38 @@ App.Views.Geo = Backbone.View.extend({
 	},
 
 
-
-	addClickListener: function() {
+	addListener: function() {
 		var that = this
-	  google.maps.event.addListener(that.map, 'click', function(event){
-	    var currentPos = {lat: event.latLng.lat(), lng: event.latLng.lng(), dist: '1000'};
-	    console.log("I listened");
-
+	  google.maps.event.addListener(map, 'click', function(event){
+      that.clickMarker(event.latLng);
+	    var position = {lat: event.latLng.lat(), lng: event.latLng.lng(), dist: '1000'};
 	    //placeClickMarker(event.latLng);
-	    that.getNewPhotos(currentPos);
+	    that.getPhotos(position);
 	  });
 	},
 
-	getNewPhotos: function(place) {
+  clickMarker: function(location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+
+    map.setCenter(location);
+  },
+
+	getPhotos: function(location) {
+    var that = this;
+
 		$.ajax({
 		  url: 'https://api.instagram.com/v1/media/search?callback=?',
-		  dataType: 'json',
-		  data: {'order': '-createdAt', lat: place.lat, lng: place.lng, distance:place.dist, client_id: App.Settings.clientID},
-		  success: jsonLoad,
-		  statusCode: {
-		    500: function () {
-		      alert('Sorry, service is temporarily down.');
-		    }
-		  }
+		  data: {'order': '-createdAt', lat: location.lat, lng: location.lng, distance:location.dist, client_id: App.Settings.clientID},
+      dataType: 'json',
+      success: function(data) { that.renderGallery(data); }
   	});
-	}
+	},
+
+  createModels: function(data){
+    data["data"].each
+  }
 
 });

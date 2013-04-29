@@ -1,9 +1,6 @@
 App.Routers.User = Backbone.Router.extend ({
-	initialize: function(map) {
-		this.map = map
-	},
 
-	Routes: {
+	routes: {
 		"": "index",
 		"/events": "events",
 		"/friends" : "friends"
@@ -11,13 +8,10 @@ App.Routers.User = Backbone.Router.extend ({
 	},
 
 	index: function() {
+    console.log("reached index");
 		var that = this;
-		var geophotos = new App.Views.Geo({
-			map: that.map
-		});
-		geophotos.addClickListener();
-		console.log("hello")
-
+		var geophotos = new App.Views.Geo();
+		geophotos.addListener();
 	},
 
 	events: function() {
@@ -26,7 +20,7 @@ App.Routers.User = Backbone.Router.extend ({
 			map: that.map
 		});
 		geophotos.addClickListener();
-		console.log("hello")
+		console.log("reached events");
 
 	}
 
