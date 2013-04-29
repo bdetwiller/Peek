@@ -5,8 +5,33 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 </head>
 <body>
+  <div class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+   	<h1>See what's happening</h1>
+         <ul class="nav">
+           <li>
+             <a href="#events">
+               Events nearby
+             </a>
+           </li>
+           <li>
+             <a href="#friends">
+               Friends
+             </a>
+           </li>
+           <li>
+             <a href="#lists">
+               Lists
+             </a>
+           </li>
+         </ul>
+   </div>
+  </div>
+
 
 <%= yield %>
 
