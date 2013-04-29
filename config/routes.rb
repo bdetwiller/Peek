@@ -1,6 +1,9 @@
 Insta::Application.routes.draw do
-  resources :events
+  resources :users
 
+
+  resources :events
+  root to: "events#index"
 
 
   # The priority is based upon order of creation:
