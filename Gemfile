@@ -28,6 +28,11 @@ gem 'rest-client'
 gem 'flatui-rails'
 gem 'instagram'
 
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-instagram'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
