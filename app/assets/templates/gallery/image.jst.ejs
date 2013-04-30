@@ -1,0 +1,8 @@
+<a class="fancybox"
+  rel="group"
+  <% if(photo.attributes.caption) { %>
+    title="<%= photo.attributes.caption.text%>"
+  <% } %>
+  href="<%=photo.attributes.images.standard_resolution.url %>" >
+   <img src="<%=photo.attributes.images.thumbnail.url%>" alt="" />
+</a>

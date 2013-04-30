@@ -15,18 +15,20 @@
 // Libraries from gems:
 //= require jquery
 //= require jquery_ujs
-//= require backbone-rails
+//= require underscore
+//= require backbone
 //
 //= require flat-ui
-//
+//= require jquery-fancybox-pack
 // Your top-level namespace:
-//=require insta_app
+//= require insta_app
 //
 // Directories with Backbone classes:
-// require_tree ./models
-// require_tree ./collections
-// require_tree ./routers
-// require_tree ./views
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./routers
+//= require_tree ./views
+//= require_tree ../templates
 //
 // Catch-all for other Javascripts:
 //= require_tree .
