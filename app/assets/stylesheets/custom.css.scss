@@ -1,0 +1,41 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  padding-top: 35px; }
+
+#map {
+
+  display:block;
+  height:100%;
+  width: 50%; }
+#map img {
+  max-width: none; }
+
+.photos {
+  background-color: #34495e;
+  border-radius: 0 0 6px;
+  overflow-y: scroll;
+
+  float: right;
+  width: 50%;
+  height: 100%;}
+
+.photos a img {
+  border: 3px solid white;
+  float: left;
+  margin: 20px 0 0 15px;
+  opacity: .75;
+}
+
+.photos a img:hover {
+  opacity: 1.0;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

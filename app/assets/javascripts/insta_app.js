@@ -23,7 +23,7 @@ window.App = {
   installMap: function () {
 	    var mapOptions = {
 	    center: new google.maps.LatLng(37.760, -122.428),
-	    zoom: 13,
+	    zoom: 12,
 	    disableDefaultUI: true,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP,
 	    zoomControl: true,
