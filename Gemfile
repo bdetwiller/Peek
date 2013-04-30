@@ -23,10 +23,10 @@ end
 gem 'thin'
 
 gem 'jquery-rails'
-gem 'backbone-rails'
 gem 'rest-client'
 gem 'flatui-rails'
 gem 'instagram'
+gem 'ejs'
 
 
 gem 'devise'
