@@ -7,7 +7,7 @@ Insta::Application.routes.draw do
 
 
   resources :events
-  root to: "events#index"
+  root to: "events#geo"
 
 
   # The priority is based upon order of creation:

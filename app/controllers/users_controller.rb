@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
-
-	def index
-		if current_user[:access_token]
-		end
-		
-	end
-
+  def show
+   p request.env['omniauth.auth']
+    @user = User.find(params[:id])
+    render :json => @user
+  end
 
 end

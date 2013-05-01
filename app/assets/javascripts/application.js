@@ -18,7 +18,7 @@
 //= require underscore
 //= require backbone
 //
-//= require flat-ui
+//= require bootstrap
 //= require jquery-fancybox-pack
 // Your top-level namespace:
 //= require insta_app

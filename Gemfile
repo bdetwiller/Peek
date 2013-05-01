@@ -24,9 +24,9 @@ gem 'thin'
 
 gem 'jquery-rails'
 gem 'rest-client'
-gem 'flatui-rails'
 gem 'instagram'
 gem 'ejs'
+gem 'bootstrap-sass'
 
 
 gem 'devise'
