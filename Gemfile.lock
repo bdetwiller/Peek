@@ -55,10 +55,6 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
-    flatui-rails (0.0.4)
-      bootstrap-sass (= 2.2.2)
-      railties (>= 3.1)
-      sass-rails (>= 3.2.0)
     hashie (2.0.4)
     hike (1.2.2)
     httpauth (0.2.0)
@@ -157,10 +153,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass
   coffee-rails (~> 3.2.1)
   devise
   ejs
-  flatui-rails
   instagram
   jquery-rails
   omniauth

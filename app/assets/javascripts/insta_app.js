@@ -10,14 +10,13 @@ window.App = {
   	clientSecret: "c02752f7a0d54e32b510859841d67ac5"
   },
 
-  initialize: function () {
-
+  initialize: function (user) {
     this.installMap();
+    App.Settings.auth = user.token;
+
     new App.Routers.User();
+    console.log("router");
     Backbone.history.start();
-
-    //this.addClickListener();
-
   },
 
   installMap: function () {

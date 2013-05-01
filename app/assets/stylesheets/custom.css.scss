@@ -1,13 +1,12 @@
 html, body {
   height: 100%;
   width: 100%;
-  padding-top: 35px; }
+}
 
 #map {
-
   display:block;
   height:100%;
-  width: 50%; }
+  width: 50%;}
 #map img {
   max-width: none; }
 
@@ -15,7 +14,6 @@ html, body {
   background-color: #34495e;
   border-radius: 0 0 6px;
   overflow-y: scroll;
-
   float: right;
   width: 50%;
   height: 100%;}
@@ -38,4 +36,12 @@ html, body {
   content: " ";
   clear: both;
   height: 0;
+}
+
+.brandnav {
+  color: #2980B9;
+  font-size: inherit;
+  font-weight: 700;
+  padding-bottom: 16px;
+  padding-top: 15px;
 }
