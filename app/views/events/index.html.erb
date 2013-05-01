@@ -8,36 +8,34 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg&sensor=true">
     </script>
 
-
-
     <script type="text/javascript">
     $(function () {
-      window.App.initialize();
+      <% if user_signed_in? %>
+      var currentUser = <%= current_user.to_json.html_safe %>;
+        window.App.initialize(currentUser);
+      <% else %>
+        window.App.initialize(user = null);
+      <% end %>
     });
   </script>
 
-
-
   </head>
   <body>
-
-
-
       <div id="gallery" class="photos clearfix"></div>
       <div id="map"></div>
-
 
   </body>
 </html>
 
 
 
-<!--
-maps api key: AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg
-https://developers.google.com/maps/documentation/javascript/events
-https://developers.google.com/places/documentation/autocomplete
-http://api.eventful.com/
-http://instagram.com/developer/endpoints/locations/
-http://instagram.com/developer/endpoints/media/
-https://github.com/ropiku/omniauth-instagram
--->
+# <!--
+# maps api key: AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg
+#places api key:
+# https://developers.google.com/maps/documentation/javascript/events
+# https://developers.google.com/places/documentation/autocomplete
+# http://api.eventful.com/
+# http://instagram.com/developer/endpoints/locations/
+# http://instagram.com/developer/endpoints/media/
+# https://github.com/ropiku/omniauth-instagram
+# -->

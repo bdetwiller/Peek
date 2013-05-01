@@ -1,13 +1,4 @@
 App.Views.Geo = Backbone.View.extend({
-	event: {
-	 "click": "recent_user"
-
-	},
-
-	render: function() {
-
-	},
-
 
 	addListener: function() {
 		var that = this

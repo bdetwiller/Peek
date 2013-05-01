@@ -6,14 +6,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:instagram]
-  devise :confirmable
+  #devise :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me,
+                  :token
   # attr_accessible :title, :body
 
   # for oauth
   attr_accessible :provider, :uid
+
+  def email_required?
+    false
+  end
 
 
   def self.find_or_create_by_instagram_oauth(auth)
@@ -21,13 +26,20 @@ class User < ActiveRecord::Base
 
       unless user
         user = User.create!(
+        username: auth.info.nickname,
         provider: auth.provider,
         uid: auth.uid,
-        email: auth.info.email,
-        authentication_token: auth.credentials.token,
+        email: "#{auth.info.nickname}@instagram.com",
+        token: auth.credentials.token,
         password: Devise.friendly_token[0,20])
       end
 
      user
    end
+   #
+   # def as_json
+   #   json = super
+   #   json["authentication_token"] = authentication_token
+   #   json
+   # end
 end
