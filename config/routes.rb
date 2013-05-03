@@ -1,4 +1,7 @@
 Insta::Application.routes.draw do
+  resources :join_lists
+
+
   devise_for :users, :controllers => {
     :omniauth_callbacks => 'omniauth_callbacks'
   }
