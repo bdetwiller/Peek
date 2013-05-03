@@ -19,9 +19,8 @@ App.Models.Event = Backbone.Model.extend({
 		
 
 		google.maps.event.addListener(marker, "mouseover", function() {
-			console.log(that.id)
 	    $('#' + that.id).addClass("highlight");
-		  $('#eventlist').scrollTo('#' + that.id);
+		  $('#eventlist').scrollTo('#' + that.id, 800 );
 		});
 
 		google.maps.event.addListener(marker, "mouseout", function() {
