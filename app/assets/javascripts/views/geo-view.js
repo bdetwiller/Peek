@@ -42,6 +42,26 @@ App.Views.Geo = Backbone.View.extend({
         geoPhotosView.addtoMap();
       }
     });
+  },
+
+  addSearch: function() {
+    var that = this
+    var input = (document.getElementById('placesearch'));
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      var location = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng(), dist: '1500'};
+      console.log(location);
+      that.getPhotos(location);
+      that.clickMarker(place.geometry.location);
+      map.setCenter(place.geometry.location);
+      map.setZoom(12);
+      // if (!place.geometry) {
+      //   // Inform the user that the place was not found and return.
+      //   input.className = 'notfound';
+      //   return;
+    })
   }
 
 });

@@ -118,7 +118,8 @@ App.Views.Photos = Backbone.View.extend({
   installFancyBox: function(){
     $("a.fancybox").fancybox({
     		transitionIn	:	'elastic',
-        closeBtn : false,
+        closeBtn : true,
+        
         overlay : false,
         helpers     : {
                title: { type: 'inside' },
