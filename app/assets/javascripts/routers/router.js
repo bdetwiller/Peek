@@ -31,7 +31,7 @@ App.Routers.User = Backbone.Router.extend({
       var friendPhotos = new App.Views.Friends();
     }
     else {
-      window.location.href = "http://0.0.0.0:3000/users/sign_in"
+      window.location.href = "http://peekapp.herokuapp.com/users/sign_in"
     }
   },
 
