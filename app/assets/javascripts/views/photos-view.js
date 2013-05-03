@@ -4,9 +4,17 @@ App.Views.Photos = Backbone.View.extend({
     var that = this;
     that.collection.each(function(photo) {
       that.$el.append(JST["gallery/image"]( {photo: photo} ));
+
+      $('#' + photo.get("id")).mouseenter(function () { //need to fix
+      });
     });
 
-    that.addtoSidebar(that.$el);
+    if(that.options.forEvent) {
+    	that.$el.css("display", "none");
+			that.addPhotoDivs(that.$el);
+    } else {
+    	that.addtoSidebar(that.$el);
+    }
   },
 
   addtoMap: function(){ 
@@ -26,8 +34,8 @@ App.Views.Photos = Backbone.View.extend({
 
   setOverlay: function(position, photoURL, title){
 
-		var photoWidth   = 25
-		var photoHeight  = 25
+		var photoWidth   = 35
+		var photoHeight  = 35
 
 		var borderWidth  = 2 
 		var borderRadius = 2 
@@ -113,6 +121,12 @@ App.Views.Photos = Backbone.View.extend({
     $('#sidebar').empty();
     $('#sidebar').html(photos);
     that.installFancyBox();
+  },
+
+  addPhotoDivs: function(photos){
+  	var that = this
+  	$('#' + that.options.venue).append(photos);
+  	that.installFancyBox();
   },
 
   installFancyBox: function(){

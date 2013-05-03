@@ -13,7 +13,7 @@ App.Views.Events = Backbone.View.extend({
       success: function(response) { 
         var venuesCollection = new App.Collections.Events(response.response.venues);
         that.displayEvents(venuesCollection);
-        //that.getPhotos(venuesCollection)
+        that.getPhotos(venuesCollection);
       }
     });
   },
@@ -21,7 +21,8 @@ App.Views.Events = Backbone.View.extend({
   displayEvents: function(eventsCollection) {
     App.Store.EventsView = new App.Views.EventsList({
       collection: eventsCollection,
-      id: "eventlist"
+      id: "eventlist",
+      el: "#sidebar"
     })
     App.Store.EventsView.addtoSidebar();
   },
@@ -31,7 +32,7 @@ App.Views.Events = Backbone.View.extend({
     var distance = 200
     var time = new Date;
     var min_time = new Date(time - 4 * 3600000); //get photos taken in last 4 hours
-
+    console.log('getting event photos');
     eventsCollection.each(function(venue) { 
 
       $.ajax({
@@ -40,14 +41,15 @@ App.Views.Events = Backbone.View.extend({
               distance: distance, min_timestamp: min_time, client_id: App.Settings.instaClientID},
         dataType: 'json',
         success: function(response) { 
-          App.Collections.eventPhotos = new App.Collections.Photos(response.data);
-          App.Views.eventPhotos = new App.Views.Photos({
-            collection: App.Collections.eventPhotos,
-            id: venue.get("name")
+          eventPhotoCollection = new App.Collections.Photos(response.data);
+          eventPhotoView = new App.Views.Photos({
+            collection: eventPhotoCollection,
+            id: venue.get("id") + "_photos",
+            venue: venue.get("id"),
+            forEvent: true
           });
 
-          App.Views.eventPhotos.processPhotos();
-          App.Views.eventPhotos.addtoMap();
+          eventPhotoView.processPhotos();
         }
       });
     });

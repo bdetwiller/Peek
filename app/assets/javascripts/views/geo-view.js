@@ -11,6 +11,14 @@ App.Views.Geo = Backbone.View.extend({
       var position = {lat: event.latLng.lat(), lng: event.latLng.lng() };
       that.getPhotos(position);
     });
+
+    var tooltip = $("#help")
+
+    tooltip.slideDown(function() {
+      setTimeout(function() {
+        tooltip.slideUp();
+      }, 4000);
+    });
   },
 
   clickMarker: function(location) {

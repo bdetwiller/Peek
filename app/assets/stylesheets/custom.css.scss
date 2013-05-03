@@ -46,6 +46,7 @@ html, body {
   float: left;
   margin: 20px 0 0 15px;
   opacity: .8;
+  zoom: 1
 }
 
 .photos a img:hover {
@@ -98,4 +99,18 @@ margin: 1px 0 3px;
 
 }
 
+.fancybox:after {
+  content: " ";
+}
 
+#help {
+  display: none;
+  background-color: #34495e;
+  line-height: 18px;
+  padding: 12px 12px;
+  text-align: center;
+  width: 183px;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 13px;
+}
