@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   # for oauth
   attr_accessible :provider, :uid
 
+ # has_many :join_lists
+  #has_many :list
+
   def email_required?
     false
   end

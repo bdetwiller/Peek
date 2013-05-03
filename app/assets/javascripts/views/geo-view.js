@@ -1,37 +1,47 @@
 App.Views.Geo = Backbone.View.extend({
+  event: {
+    //add in here
+  },
 
-	addListener: function() {
-		var that = this
-	  google.maps.event.addListener(map, 'click', function(event){
+  addListener: function() {
+    var that = this
+    var geoListen = google.maps.event.addListener(map, 'click', function(event){
+      
       that.clickMarker(event.latLng);
-	    var position = {lat: event.latLng.lat(), lng: event.latLng.lng(), dist: '1000'};
-	    //placeClickMarker(event.latLng);
-	    that.getPhotos(position);
-	  });
-	},
+      var position = {lat: event.latLng.lat(), lng: event.latLng.lng() };
+      that.getPhotos(position);
+    });
+  },
 
   clickMarker: function(location) {
+
     var marker = new google.maps.Marker({
       position: location,
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP
     });
 
     map.setCenter(location);
   },
 
-	getPhotos: function(location) {
+  getPhotos: function(location) {
     var that = this;
-
-		$.ajax({
-		  url: 'https://api.instagram.com/v1/media/search?callback=?',
-		  data: {'order': '-createdAt', lat: location.lat, lng: location.lng, distance:location.dist, client_id: App.Settings.clientID},
+    var distance = 1000
+    $.ajax({
+      url: 'https://api.instagram.com/v1/media/search?callback=?',
+      data: {lat: location.lat, lng: location.lng, distance: distance, client_id: App.Settings.instaClientID},
       dataType: 'json',
-      success: function(data) { that.renderGallery(data); }
-  	});
-	},
+      success: function(response) { 
+        var geoPhotosCollection = new App.Collections.Photos(response.data);
+        var geoPhotosView = new App.Views.Photos({
+          id: "geo",
+          collection: geoPhotosCollection
+        });
 
-  createModels: function(data){
-    data["data"].each
+        geoPhotosView.processPhotos();
+        geoPhotosView.addtoMap();
+      }
+    });
   }
 
 });

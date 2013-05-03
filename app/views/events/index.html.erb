@@ -3,12 +3,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Photomap</title>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg&sensor=true">
-    </script>
+  </head>
+  <body>
 
-    <script type="text/javascript">
+      <div id="map"></div>
+      <div id="sidebar" class="photos clearfix"></div>
+      
+
+
+      <!-- <div width="100%" style="overflow: auto"> -->
+<!--       </div> -->
+
+        
+
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&sensor=true">
+  </script>
+
+  <script type="text/javascript">  
     $(function () {
       <% if user_signed_in? %>
       var currentUser = <%= current_user.to_json.html_safe %>;
@@ -19,17 +31,12 @@
     });
   </script>
 
-  </head>
-  <body>
-      <div id="gallery" class="photos clearfix"></div>
-      <div id="map"></div>
-
   </body>
 </html>
 
 
 
-# <!--
+<!--
 # maps api key: AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg
 #places api key:
 # https://developers.google.com/maps/documentation/javascript/events
@@ -38,4 +45,5 @@
 # http://instagram.com/developer/endpoints/locations/
 # http://instagram.com/developer/endpoints/media/
 # https://github.com/ropiku/omniauth-instagram
+#"https://maps.googleapis.com/maps/api/js?key=AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg&sensor=false"
 # -->

@@ -20,6 +20,7 @@
 //
 //= require bootstrap
 //= require jquery-fancybox-pack
+//= require jquery.scrollTo.min
 // Your top-level namespace:
 //= require insta_app
 //
@@ -27,6 +28,7 @@
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./routers
+//= require views/photos-view
 //= require_tree ./views
 //= require_tree ../templates
 //
