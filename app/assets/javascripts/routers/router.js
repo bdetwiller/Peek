@@ -10,8 +10,9 @@ App.Routers.User = Backbone.Router.extend({
 
 	index: function() {
 		var that = this;
-		var geophotos = new App.Views.Geo();
-		geophotos.addListener();
+		var geoPhotos = new App.Views.Geo();
+		geoPhotos.addSearch();
+		geoPhotos.addListener();
 	},
 
 	events: function() {
