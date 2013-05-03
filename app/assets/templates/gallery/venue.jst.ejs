@@ -1,0 +1,10 @@
+<li class="venue-list" id="<%= venue.id %>">
+	<div class="venue-icon"> 
+		<img src= <%= venue.get('categories')[0].icon.prefix + "44.png" %> >
+	</div>
+	<div class="venue-content">
+		<h4> <%= venue.get('name') %> </h4>
+		<%= venue.get('hereNow').count %> people here now
+	</div>
+</li>
+ 

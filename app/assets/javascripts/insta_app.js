@@ -4,58 +4,49 @@ window.App = {
   Collections: {},
   Views: {},
   Routers: {},
+  Helpers: {},
   Store: {},
   Settings: {
-  	clientID: "c8f7973e4c2a40909deb8ac3c5c11843",
-  	clientSecret: "c02752f7a0d54e32b510859841d67ac5"
+  	instaClientID: "c8f7973e4c2a40909deb8ac3c5c11843",
+  	instaClientSecret: "c02752f7a0d54e32b510859841d67ac5",
+    foursquareClientID: "BSWONLNWEECXYWQSXZVQPZQQ25EZJY31CKO5BX5P0GDE3WW1",
+    foursquareClientSecret: "FLFSXFWZOVRWKS545FDS3LD4SPCSWIUSDX132OKMJATU2XL4" 
   },
 
   initialize: function (user) {
+
     this.installMap();
-    App.Settings.auth = user.token;
+    markersArray = []
+
+    if(user) {
+     App.Settings.auth = user.token
+    }
 
     new App.Routers.User();
-    console.log("router");
     Backbone.history.start();
   },
 
   installMap: function () {
-	    var mapOptions = {
-	    center: new google.maps.LatLng(37.760, -122.428),
-	    zoom: 12,
-	    disableDefaultUI: true,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP,
-	    zoomControl: true,
-	    overviewMapControl: true
-	  	};
+    var mapOptions = {
+      zoom: 12,
+      scrollwheel: false,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      overviewMapControl: true
+  	};
 
-	  	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  },
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        map.setCenter(initialLocation);
+    });
+    } else {
+      alert("We couldn't locate you. Welcome to San Francisco");
+      var initialLocation = new google.maps.LatLng(37.760, -122.418);
+      map.setCenter(initialLocation);
+    }
 
-  // addClickListener: function() {
- //     var that = this
- //     google.maps.event.addListener(map, 'click', function(event){
- //       var currentPos = {lat: event.latLng.lat(), lng: event.latLng.lng(), dist: '1000'};
- //       console.log("currentPos");
- //
- //       //placeClickMarker(event.latLng);
- //       that.getNewPhotos(currentPos);
- //     });
- //   },
- //
- //   getNewPhotos: function(place) {
- //     $.ajax({
- //       url: 'https://api.instagram.com/v1/media/search?callback=?',
- //       dataType: 'json',
- //       data: {'order': '-createdAt', lat: place.lat, lng: place.lng, distance:place.dist, client_id: App.Settings.clientID},
- //       success: jsonLoad,
- //       statusCode: {
- //         500: function () {
- //           alert('Sorry, service is temporarily down.');
- //         }
- //       }
- //    });
- //   }
-
-
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
 };
