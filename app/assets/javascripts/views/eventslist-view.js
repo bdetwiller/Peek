@@ -8,8 +8,11 @@ App.Views.EventsList = Backbone.View.extend({
     	venue.addMarker();
       that.$el.append(JST["gallery/venue"]( {venue: venue} ));
 
-      $('#' + venue.get("id")).click(function () { //need to fix
-        console.log("fired");
+      $('#' + venue.get("id") + " .venue-content").click(function () { 
+        $('#' + venue.get("id") + "_photos").slideToggle();
+      });
+
+      $('#' + venue.get("id") + " .venue-icon").click(function () { 
         $('#' + venue.get("id") + "_photos").slideToggle();
       });
     });
