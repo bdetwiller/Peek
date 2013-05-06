@@ -7,7 +7,7 @@ html, body {
 #map {
   float: left;
   height:100%;
-  width: 60%;
+  width: 57%;
 }
 
 #map img {
@@ -19,7 +19,7 @@ html, body {
   border-radius: 0 0 6px;
   overflow-y: scroll;
   float: right;
-  width: 40%;
+  width: 43%;
   height: 100%;
 }
 
@@ -43,10 +43,9 @@ html, body {
 */
 .photos a img {
   border: 3px solid white;
-  float: left;
+  
   margin: 20px 0 0 15px;
   opacity: .8;
-  zoom: 1
 }
 
 .photos a img:hover {
@@ -71,12 +70,12 @@ html, body {
 }
 
 .venue-list {
-    list-style-type: none;
-    background: #2c3e50; 
-    cursor: pointer;
-    margin-top: 2px;
-    padding: 18px 42px 17px 25px;
-    position: relative;
+  list-style-type: none;
+  background: #34495e; 
+  cursor: pointer;
+  margin-top: 2px;
+  padding: 18px 42px 17px 25px;
+  position: relative;
 }
 .venue-icon {
   float: left;
@@ -99,18 +98,4 @@ margin: 1px 0 3px;
 
 }
 
-.fancybox:after {
-  content: " ";
-}
 
-#help {
-  display: none;
-  background-color: #34495e;
-  line-height: 18px;
-  padding: 12px 12px;
-  text-align: center;
-  width: 183px;
-  border-radius: 6px;
-  color: #ffffff;
-  font-size: 13px;
-}
