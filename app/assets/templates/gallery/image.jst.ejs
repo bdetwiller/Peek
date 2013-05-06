@@ -1,8 +1,8 @@
-<ul id="<%= photo.get("id")%>"> <a class="fancybox" 
+<a class="fancybox" 
 	  rel="group"
 	  <% if(photo.get("caption")) { %>
 	    title="<%= photo.get("caption").text%>"
 	  <% } %>
 	  href="<%=photo.get("images").standard_resolution.url %>" >
 	   <img src="<%=photo.get("images").thumbnail.url%>" alt="" />
-	</a></ul>
+	</a>
