@@ -5,8 +5,8 @@ App.Views.Photos = Backbone.View.extend({
     that.collection.each(function(photo) {
       that.$el.append(JST["gallery/image"]( {photo: photo} ));
 
-      $('#' + photo.get("id")).mouseenter(function () { //need to fix
-      });
+      // $('#' + photo.get("id")).mouseenter(function () { //need to fix
+      // });
     });
 
     if(that.options.forEvent) {
@@ -120,6 +120,7 @@ App.Views.Photos = Backbone.View.extend({
     var that = this;
     $('#sidebar').empty();
     $('#sidebar').html(photos);
+    console.log("hi");
     that.installFancyBox();
   },
 
