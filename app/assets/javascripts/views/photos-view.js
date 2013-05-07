@@ -21,15 +21,19 @@ App.Views.Photos = Backbone.View.extend({
  		var that = this;   
     that.collection.each(function(photo) {
       var LatLng = new google.maps.LatLng(photo.get("location").latitude, photo.get("location").longitude);
-      var thumbnail = photo.get("images").thumbnail.url
-      var low_res = photo.get("images").low_resolution.url
+      var thumbnail = photo.get("images").thumbnail.url;
+      var low_res = photo.get("images").low_resolution.url;
+      var time = photo.get("created_time");
+      var username = photo.get("user").username
+
       if (photo.get("caption")) { 
     			var caption = photo.get("caption").text;
     	} else {
     		var caption = null;
     	}
-      var username = photo.get("user").username
-      var infowindow = that.createInfoWindow(caption, username, low_res);
+
+     
+      var infowindow = that.createInfoWindow(caption, username, low_res, time);
       that.createMarker(LatLng, thumbnail, infowindow);
     });
   },
@@ -53,15 +57,13 @@ App.Views.Photos = Backbone.View.extend({
  		});
   },
 
-  createInfoWindow: function(caption, username, photo) {
+  createInfoWindow: function(caption, username, photo, createdAt) {
     var infowindow = new google.maps.InfoWindow({
-      content: '<img src="' + photo +
-        '" style="border:2px solid white; box-shadow:2px 2px 10px black;"/>' +
-        '<div> <b>@' + username + '</b> <br>' + caption + '</div>'
+      content: '<img src="' + photo + '"/> <div> <b>@' + username + ' - </b> ' + $.timeago(new Date(createdAt * 1000)) + ': <br>' + caption + '</div>'
     });
 
-    infowindow.setOptions({maxWidth:300});
-    infowindow.setOptions({maxHeight:300});
+    infowindow.setOptions({maxWidth:330});
+    infowindow.setOptions({maxHeight:360});
 
     return infowindow;
   },

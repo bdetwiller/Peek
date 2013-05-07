@@ -109,4 +109,87 @@ margin: 1px 0 3px;
   font-size: 13px;
 }
 
+.login-form {
+  background-color: #eceff1;
+  border-radius: 6px;
+  padding: 24px 23px 20px
+}
 
+
+.btn-instagram {
+  font-size: 1.2em;
+  font-family: sans-serif;
+  color:#333;
+  text-shadow:1px 1px #fff;
+  text-decoration: none;
+  display:inline-block; 
+  padding:0.5em 1.75em 0.5em 1em;
+  border-radius: 0.25em;
+  background: #f8f8f8;
+  border:1px solid #ccc;
+  border-right:0.25em solid #00558D; /* blue stripe */
+  position: relative;
+  margin:0 0 1px; 
+}
+
+.btn-instagram:before, .btn-instagram:after {
+  content:'';
+  display:block;
+  position: absolute;
+}
+
+
+.btn-instagram:before {
+  width:0.25em;
+  height: 100%;
+  background:#FBB03B; /* yellow stripe */ 
+  border-left:0.25em solid #D4145A; /* red stripe */ 
+  border-right:0.25em solid #00A99D; /* green stripe */ 
+  top:0;
+  right:0;
+}
+
+
+.btn-instagram:after {
+  width:100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 0.25em;
+  padding-left: 0.25em;
+  box-shadow: inset 1px 1px 0px rgba(255,255,255,0.5), inset -1px -1px 0 rgba(0,0,0,0.1);
+  }
+
+
+.login-link {
+  color: #bfc9ca;
+  display: block;
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: center; }
+
+a:hover {
+  color: #2ecc71;
+  text-decoration: none; }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1050;
+  width: auto;
+  margin: -280px 0 0 -150px;
+  background-color: white;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: none;
+}

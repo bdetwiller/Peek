@@ -21,6 +21,7 @@
 //= require bootstrap
 //= require jquery-fancybox-pack
 //= require jquery.scrollTo.min
+//= require timeago
 //
 // Your top-level namespace:
 //= require insta_app
