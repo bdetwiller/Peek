@@ -27,7 +27,7 @@ App.Views.Geo = Backbone.View.extend({
         window.markersArray[i].setMap(null); 
       }
     }
-
+    
     var marker = new google.maps.Marker({
       position: location,
       map: map,
@@ -35,16 +35,17 @@ App.Views.Geo = Backbone.View.extend({
     });
 
     window.markersArray.push(marker);
-
     map.setCenter(location);
   },
 
   getPhotos: function(location) {
     var that = this;
-    var distance = 1000
+    var distance = 1200
+    var time = new Date;
+    var min_time = new Date(time - 24 * 3600000);
     $.ajax({
       url: 'https://api.instagram.com/v1/media/search?callback=?',
-      data: {lat: location.lat, lng: location.lng, distance: distance, client_id: App.Settings.instaClientID},
+      data: {lat: location.lat, lng: location.lng, min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},
       dataType: 'json',
       success: function(response) { 
         var geoPhotosCollection = new App.Collections.Photos(response.data);
