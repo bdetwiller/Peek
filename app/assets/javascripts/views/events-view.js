@@ -31,9 +31,9 @@ App.Views.Events = Backbone.View.extend({
 
  getPhotos: function(eventsCollection) {
     var that = this;
-    var distance = 200
+    var distance = 300
     var time = new Date();
-    var min_time = (new Date(time - 24 * 3600000)).getTime()/1000;
+    var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
 
     eventsCollection.each(function(venue) { 
       $.ajax({
