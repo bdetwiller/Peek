@@ -25,8 +25,7 @@ App.Routers.User = Backbone.Router.extend({
 	},
 
   friends: function() {
-    if(App.Settings.currentUser !== undefined) {
-    	console.log("it thinks you are logged in");
+    if(App.Settings.auth !== undefined) {
       google.maps.event.clearListeners(map, 'click');
       var that = this;
       var friendPhotos = new App.Views.Friends();
