@@ -36,8 +36,4 @@ App.Routers.User = Backbone.Router.extend({
     }
   },
 
-  newlist: function() {
-  	
-  }
-
 });

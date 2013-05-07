@@ -42,7 +42,7 @@ App.Views.Geo = Backbone.View.extend({
     var that = this;
     var distance = 1200
     var time = new Date();
-    var min_time = (new Date(time - 24 * 3600000)).getTime()/1000;;
+    var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
 
     $.ajax({
       url: 'https://api.instagram.com/v1/media/search?callback=?',
@@ -57,6 +57,7 @@ App.Views.Geo = Backbone.View.extend({
         App.Store.geoPhotosView.processPhotos();
         App.Store.geoPhotosView.addtoMap();
       }
+      error:
     });
   },
 
