@@ -6,47 +6,36 @@
 
   </head>
   <body>
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="login-form modal-body">
+      <a class="btn-instagram" href="http://peekapp.herokuapp.com/users/auth/instagram">
+        <b>Sign in</b> with Instagram
+      </a>
+      <a class="login-link" href="/">Go back</a>
+    </div> 
+  </div>
+
 
     <div class="tooltip fade bottom in" style="top: 40px; left:25%; display: block;" id="help">
       <div id="helptext">Click on the map or search for an place to see recent photos</div>
     </div>
 
-      <div id="map"></div>
-      <div id="sidebar" class="photos clearfix"></div>
-      
-        
+    <div id="map"></div>
+    <div id="sidebar" class="photos clearfix"></div>    
 
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=true">
-  </script>
- <script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js"></script>    
-
-  
-
-
-  <script type="text/javascript">  
-    $(function () {
-      <% if user_signed_in? %>
-      var currentUser = <%= current_user.to_json.html_safe %>;
-        window.App.initialize(currentUser);
-      <% else %>
-        window.App.initialize(user = null);
-      <% end %>
-    });
-  </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&sensor=true">
+    </script>
+    <script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js"></script>    
+    <script type="text/javascript">  
+      $(function () {
+        <% if user_signed_in? %>
+        var currentUser = <%= current_user.to_json.html_safe %>;
+          window.App.initialize(currentUser);
+        <% else %>
+          window.App.initialize(user = null);
+        <% end %>
+      });
+    </script>
 
   </body>
 </html>
-
-
-
-<!--
-# maps api key: AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg
-#places api key:
-# https://developers.google.com/maps/documentation/javascript/events
-# https://developers.google.com/places/documentation/autocomplete
-# http://api.eventful.com/
-# http://instagram.com/developer/endpoints/locations/
-# http://instagram.com/developer/endpoints/media/
-# https://github.com/ropiku/omniauth-instagram
-#"https://maps.googleapis.com/maps/api/js?key=AIzaSyDjpAziyGrlEtohxyUEkITvYO9cv1xlcTg&sensor=false"
-# -->
