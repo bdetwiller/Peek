@@ -8,7 +8,7 @@ App.Views.Events = Backbone.View.extend({
 
     $.ajax({
       url: 'https://api.foursquare.com/v2/venues/trending?',
-      data: {ll: lat + "," + lng, limit: 10, radius: 5000, client_id: App.Settings.foursquareClientID,
+      data: {ll: lat + "," + lng, limit: 10, radius: 10000, client_id: App.Settings.foursquareClientID,
             client_secret: App.Settings.foursquareClientSecret, v: 20120321},
       dataType: 'json',
       success: function(response) { 
@@ -32,17 +32,17 @@ App.Views.Events = Backbone.View.extend({
  getPhotos: function(eventsCollection) {
     var that = this;
     var distance = 200
-    var time = new Date;
-    var min_time = new Date(time - 4 * 3600000); //get photos taken in last 4 hours
-    console.log('getting event photos');
-    eventsCollection.each(function(venue) { 
+    var time = new Date();
+    var min_time = (new Date(time - 24 * 3600000)).getTime()/1000;
 
+    eventsCollection.each(function(venue) { 
       $.ajax({
         url: 'https://api.instagram.com/v1/media/search?callback=?',
-        data: {lat: venue.get("location").lat, lng: venue.get("location").lng, 
-              distance: distance, min_timestamp: min_time, client_id: App.Settings.instaClientID},
+        data: {min_timestamp: min_time, lat: venue.get("location").lat, lng: venue.get("location").lng, 
+              distance: distance, client_id: App.Settings.instaClientID},
         dataType: 'json',
         success: function(response) { 
+          console.log(response);
           eventPhotoCollection = new App.Collections.Photos(response.data);
           eventPhotoView = new App.Views.Photos({
             collection: eventPhotoCollection,
