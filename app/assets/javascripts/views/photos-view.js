@@ -60,8 +60,8 @@ App.Views.Photos = Backbone.View.extend({
         '<div> <b>@' + username + '</b> <br>' + caption + '</div>'
     });
 
-    infowindow.setOptions({maxWidth:250});
-    infowindow.setOptions({maxHeight:250});
+    infowindow.setOptions({maxWidth:300});
+    infowindow.setOptions({maxHeight:300});
 
     return infowindow;
   },
