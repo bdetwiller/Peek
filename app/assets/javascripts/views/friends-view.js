@@ -3,6 +3,12 @@ App.Views.Friends = Backbone.View.extend({
   initialize: function(){
     var that = this;
 
+    if(window.markersArray) {
+      for (i in window.markersArray) {
+        window.markersArray[i].setMap(null); 
+      }
+    }
+
     that.getFeed();
   },
 

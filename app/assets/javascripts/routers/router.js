@@ -25,13 +25,15 @@ App.Routers.User = Backbone.Router.extend({
 	},
 
   friends: function() {
-    if(App.Settings.currentUser !== null) {
+    if(App.Settings.currentUser !== undefined) {
+    	console.log("it thinks you are logged in");
       google.maps.event.clearListeners(map, 'click');
       var that = this;
       var friendPhotos = new App.Views.Friends();
     }
     else {
-      window.location.href = "http://peekapp.herokuapp.com/users/sign_in"
+    	console.log('you are not logged in');
+      $("#myModal").modal("show");
     }
   },
 
