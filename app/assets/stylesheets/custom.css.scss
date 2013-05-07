@@ -3,7 +3,6 @@ html, body {
   width: 100%
 }
 
-
 #map {
   float: left;
   height:100%;
@@ -95,8 +94,19 @@ margin: 1px 0 3px;
 }
 
 .highlight {
-  background: #34495e
+  color: #1abc9c
+}
 
+#help {
+  display: none;
+  background-color: #34495e;
+  line-height: 18px;
+  padding: 12px 12px;
+  text-align: center;
+  width: 183px;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 13px;
 }
 
 
