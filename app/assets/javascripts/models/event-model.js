@@ -1,7 +1,7 @@
 App.Models.Event = Backbone.Model.extend({
 
 	addMarker: function() {
-		var that = this
+		var that = this;
 
 		var latlng = new google.maps.LatLng(that.get("location").lat, that.get("location").lng)
 		var name = that.get("name")
@@ -16,16 +16,26 @@ App.Models.Event = Backbone.Model.extend({
 		});
 
 		markersArray.push(marker);
-		
+
+		that.addListeners(marker);
+	},
+
+	addListeners: function(marker) {
+		var that = this;
 
 		google.maps.event.addListener(marker, "mouseover", function() {
-	    $('#' + that.id).addClass("highlight");
-		  $('#eventlist').scrollTo('#' + that.id, 800 );
+	    $('#' + that.id + " .venue-content").addClass("highlight");
+		  $('#sidebar').scrollTo('#' + that.id, 400);
 		});
 
 		google.maps.event.addListener(marker, "mouseout", function() {
-	     $('#' + that.id).removeClass("highlight");
+	     $('#' + that.id + " .venue-content").removeClass("highlight");
 		});
+
+		google.maps.event.addListener(marker, "click", function() {
+			 $('#' + that.id + "_photos").slideToggle();
+		});
+
 	},
 
 	removeMarker: function() {
