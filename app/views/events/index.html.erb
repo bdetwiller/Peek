@@ -29,8 +29,7 @@
     <script type="text/javascript">  
       $(function () {
         <% if user_signed_in? %>
-        var currentUser = <%= current_user.to_json.html_safe %>;
-          window.App.initialize(currentUser);
+          window.App.initialize(<%= current_user.token.to_json.html_safe %>);
         <% else %>
           window.App.initialize(user = null);
         <% end %>

@@ -41,8 +41,9 @@ App.Views.Geo = Backbone.View.extend({
   getPhotos: function(location) {
     var that = this;
     var distance = 1200
-    var time = new Date;
-    var min_time = new Date(time - 24 * 3600000);
+    var time = new Date();
+    var min_time = (new Date(time - 24 * 3600000)).getTime()/1000;;
+
     $.ajax({
       url: 'https://api.instagram.com/v1/media/search?callback=?',
       data: {lat: location.lat, lng: location.lng, min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},

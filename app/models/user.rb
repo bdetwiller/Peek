@@ -39,10 +39,5 @@ class User < ActiveRecord::Base
 
      user
    end
-   #
-   # def as_json
-   #   json = super
-   #   json["authentication_token"] = authentication_token
-   #   json
-   # end
+
 end
