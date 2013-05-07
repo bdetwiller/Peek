@@ -19,7 +19,7 @@ window.App = {
     markersArray = []
 
     if(user) {
-     App.Settings.auth = user.token
+     App.Settings.auth = user
     }
 
     new App.Routers.User();
