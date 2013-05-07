@@ -2,9 +2,6 @@ App.Views.Friends = Backbone.View.extend({
 
   initialize: function(){
     var that = this;
-    // var user = new App.Models.User({id: App.Settings.currentUser.id})
-    // user.fetch();
-    // for if we need to hide tokens
 
     that.getFeed();
   },

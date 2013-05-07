@@ -6,9 +6,9 @@ App.Views.Geo = Backbone.View.extend({
   addListener: function() {
     var that = this
     var geoListen = google.maps.event.addListener(map, 'click', function(event){
-      
       that.clickMarker(event.latLng);
-      var position = {lat: event.latLng.lat(), lng: event.latLng.lng() };
+      var position = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+
       that.getPhotos(position);
     });
 
@@ -22,12 +22,19 @@ App.Views.Geo = Backbone.View.extend({
   },
 
   clickMarker: function(location) {
+    if(window.markersArray) {
+      for (i in window.markersArray) {
+        window.markersArray[i].setMap(null); 
+      }
+    }
 
     var marker = new google.maps.Marker({
       position: location,
       map: map,
       animation: google.maps.Animation.DROP
     });
+
+    window.markersArray.push(marker);
 
     map.setCenter(location);
   },
@@ -41,13 +48,12 @@ App.Views.Geo = Backbone.View.extend({
       dataType: 'json',
       success: function(response) { 
         var geoPhotosCollection = new App.Collections.Photos(response.data);
-        var geoPhotosView = new App.Views.Photos({
+        App.Store.geoPhotosView = new App.Views.Photos({
           id: "geo",
           collection: geoPhotosCollection
         });
-
-        geoPhotosView.processPhotos();
-        geoPhotosView.addtoMap();
+        App.Store.geoPhotosView.processPhotos();
+        App.Store.geoPhotosView.addtoMap();
       }
     });
   },
@@ -65,10 +71,6 @@ App.Views.Geo = Backbone.View.extend({
       that.clickMarker(place.geometry.location);
       map.setCenter(place.geometry.location);
       map.setZoom(12);
-      // if (!place.geometry) {
-      //   // Inform the user that the place was not found and return.
-      //   input.className = 'notfound';
-      //   return;
     })
   }
 
