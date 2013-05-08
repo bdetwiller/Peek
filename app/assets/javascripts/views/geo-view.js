@@ -40,7 +40,7 @@ App.Views.Geo = Backbone.View.extend({
 
   getPhotos: function(location) {
     var that = this;
-    var distance = 1200
+    var distance = 1500
     var time = new Date();
     var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
 
@@ -49,16 +49,19 @@ App.Views.Geo = Backbone.View.extend({
       data: {lat: location.lat, lng: location.lng, min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},
       dataType: 'json',
       success: function(response) { 
-        var geoPhotosCollection = new App.Collections.Photos(response.data);
-        App.Store.geoPhotosView = new App.Views.Photos({
-          id: "geo",
-          collection: geoPhotosCollection
-        });
-        App.Store.geoPhotosView.processPhotos();
-        App.Store.geoPhotosView.addtoMap();
+        that.handleResponse(response);
       }
-      error:
     });
+  },
+
+  handleResponse: function(response) {
+    var geoPhotosCollection = new App.Collections.Photos(response.data);
+      App.Store.geoPhotosView = new App.Views.Photos({
+        id: "geo",
+        collection: geoPhotosCollection
+      });
+    App.Store.geoPhotosView.processPhotos();
+    App.Store.geoPhotosView.addtoMap();
   },
 
   addSearch: function() {
