@@ -1,7 +1,7 @@
 App.Routers.User = Backbone.Router.extend({
 
 	routes: {
-		"": "geo",
+		"": "index",
 		"explore": "geo", 
 		"events": "events",
 		"friends" : "friends",
@@ -9,8 +9,12 @@ App.Routers.User = Backbone.Router.extend({
 		"lists/id" : "showlist"
 	},
 
+	index: function() {
+		$('sidebar')
+
+	},
+
 	geo: function() {
-		var that = this;
 		
 		var geoPhotos = new App.Views.Geo();
 		geoPhotos.addSearch();
