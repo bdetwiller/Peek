@@ -33,7 +33,7 @@ App.Views.Events = Backbone.View.extend({
     var that = this;
     var distance = 300
     var time = new Date();
-    var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
+    var min_time = Math.round((new Date(time - 10 * 3600000)).getTime()/1000);
 
     eventsCollection.each(function(venue) { 
       $.ajax({
@@ -42,19 +42,34 @@ App.Views.Events = Backbone.View.extend({
               distance: distance, client_id: App.Settings.instaClientID},
         dataType: 'json',
         success: function(response) { 
-          console.log(response);
-          eventPhotoCollection = new App.Collections.Photos(response.data);
-          eventPhotoView = new App.Views.Photos({
-            collection: eventPhotoCollection,
-            id: venue.get("id") + "_photos",
-            venue: venue.get("id"),
-            forEvent: true
-          });
-
-          eventPhotoView.processPhotos();
-        }
+          if(response.meta.code === 200) {
+            that.handleResponse(response, venue);
+          } else {
+            $.ajax({
+              url: 'https://api.instagram.com/v1/media/search?callback=?',
+              data: {min_timestamp: min_time, lat: venue.get("location").lat, lng: venue.get("location").lng, 
+                    distance: distance, client_id: App.Settings.instaClientID},
+              dataType: 'json',
+              success: function(response) { 
+                console.log("used a double query for" + venue.get("name"));
+                that.handleResponse(response, venue);  
+              }
+            });
+          }
+        }  
       });
     });
+  },
+
+  handleResponse: function(response, venue) {
+    eventPhotoCollection = new App.Collections.Photos(response.data);
+      eventPhotoView = new App.Views.Photos({
+        collection: eventPhotoCollection,
+        id: venue.get("id") + "_photos",
+        venue: venue.get("id"),
+        forEvent: true
+      });
+      eventPhotoView.processPhotos();
   }
 
 });
