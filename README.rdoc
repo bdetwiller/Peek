@@ -4,3 +4,5 @@ Peek lets you explore the world through photos to see what’s happening right n
   *See your friends’ recent photos pop up around the world
 
 Built in one week as a single page webapp with Backbone.js and Rails.  Integrated with the Google Maps, Instagram and Foursquare APIs. 
+
+See it at http://peekapp.herokuapp.com/
