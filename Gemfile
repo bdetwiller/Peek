@@ -34,7 +34,7 @@ gem 'instagram'
 gem 'ejs'
 gem 'bootstrap-sass'
 
-
+gem "figaro"
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-instagram'

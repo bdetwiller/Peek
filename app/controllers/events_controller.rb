@@ -10,9 +10,7 @@ class EventsController < ApplicationController
   end
 
 	def index
-    # respond_to do |format|
-   #    format.json { render :nothing => true }
-   #  end
+
 	end
 
 

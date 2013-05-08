@@ -7,10 +7,10 @@ window.App = {
   Helpers: {},
   Store: {},
   Settings: {
-  	instaClientID: "c8f7973e4c2a40909deb8ac3c5c11843",
-  	instaClientSecret: "c02752f7a0d54e32b510859841d67ac5",
-    foursquareClientID: "BSWONLNWEECXYWQSXZVQPZQQ25EZJY31CKO5BX5P0GDE3WW1",
-    foursquareClientSecret: "FLFSXFWZOVRWKS545FDS3LD4SPCSWIUSDX132OKMJATU2XL4" 
+  	instaClientID: <%= ENV["INSTAGRAM_CLIENT_ID"] %>,
+  	instaClientSecret: <%= ENV["INSTAGRAM_CLIENT_SECRET"] %>,
+    foursquareClientID: <%= ENV["FOURSQUARE_CLIENT_ID"] %>,
+    foursquareClientSecret: <%= ENV["FOURSQUARE_CLIENT_SECRET"] %>, 
   },
 
   initialize: function (user) {
