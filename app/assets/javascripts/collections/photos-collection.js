@@ -3,7 +3,6 @@ App.Collections.Photos = Backbone.Collection.extend({
 
   hasLocation: function() {
     return _(this.filter(function (photo) { 
-    	console.log(photo.get("location") !== null);
     	return photo.get("location") !== null
     }));
   }
