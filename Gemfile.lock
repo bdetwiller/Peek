@@ -55,6 +55,9 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
+    figaro (0.6.4)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hashie (2.0.4)
     hike (1.2.2)
     httpauth (0.2.0)
@@ -158,6 +161,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   ejs
+  figaro
   instagram
   jquery-rails
   omniauth

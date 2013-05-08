@@ -3,6 +3,7 @@ App.Views.Geo = Backbone.View.extend({
     //add in here
   },
 
+
   addListener: function() {
     var that = this
     var geoListen = google.maps.event.addListener(map, 'click', function(event){
