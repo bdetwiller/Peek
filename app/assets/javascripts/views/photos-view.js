@@ -4,9 +4,6 @@ App.Views.Photos = Backbone.View.extend({
     var that = this;
     that.collection.each(function(photo) {
       that.$el.append(JST["gallery/image"]( {photo: photo} ));
-
-      // $('#' + photo.get("id")).mouseenter(function () { //need to fix
-      // });
     });
 
     if(that.options.forEvent) {
@@ -31,8 +28,7 @@ App.Views.Photos = Backbone.View.extend({
     	} else {
     		var caption = null;
     	}
-
-     
+      
       var infowindow = that.createInfoWindow(caption, username, low_res, time);
       that.createMarker(LatLng, thumbnail, infowindow);
     });
