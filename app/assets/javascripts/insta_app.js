@@ -28,7 +28,7 @@ window.App = {
 
   installMap: function () {
     var mapOptions = {
-      zoom: 12,
+      zoom: 13,
       scrollwheel: false,
       disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
