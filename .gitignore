@@ -14,8 +14,8 @@
 /log/*.log
 /tmp
 
-# Eventually ignore my api key
-
+# Ignore assets
+/public/assets
 
 # Ignore application configuration
 /config/application.yml
