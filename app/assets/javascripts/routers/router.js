@@ -1,13 +1,19 @@
 App.Routers.User = Backbone.Router.extend({
 
 	routes: {
-		"": "geo",
+		"": "index",
 		"geo" : "geo",
 		"geo/:query": "geo", 
 		"events": "events",
 		"friends" : "friends",
 	},
 
+	index: function() {
+		var geoPhotos = new App.Views.Geo();
+		geoPhotos.addListener();
+		geoPhotos.addSearch();
+		geoPhotos.loadInfo();
+	},
 
 	geo: function(query) {
 		if(query) {
