@@ -82,10 +82,14 @@ App.Views.Photos = Backbone.View.extend({
     		transitionIn	:	'elastic',
         closeBtn : true,
         
-        overlay : false,
+        overlay : true,
         helpers     : {
                title: { type: 'inside' },
-               overlay : null
+               overlay : {
+                closeClick : true,  
+                speedOut   : 50,
+                locked : true 
+                }
              }
     });
   },
