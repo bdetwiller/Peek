@@ -20,6 +20,11 @@ App.Views.Geo = Backbone.View.extend({
     });
   },
 
+  loadInfo: function() {
+    $('#sidebar').empty();
+    $('#sidebar').html(JST["gallery/initial"]());
+  },
+
   clickMarker: function(location) {
     if(window.markersArray) {
       for (i in window.markersArray) {
@@ -42,7 +47,6 @@ App.Views.Geo = Backbone.View.extend({
     var distance = 1500
     var time = new Date();
     var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
-    console.log(location);
 
     $.ajax({
       url: 'https://api.instagram.com/v1/media/search?callback=?',
