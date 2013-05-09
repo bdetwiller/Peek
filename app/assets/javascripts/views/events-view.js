@@ -24,11 +24,8 @@ App.Views.Events = Backbone.View.extend({
   },
 
   noVenues: function() {
-    var that = this
     $('#sidebar').empty();
     $('#sidebar').html(JST["gallery/novenues"]());
-
-    console.log(JST["gallery/novenues"]());
   },
 
   displayEvents: function(eventsCollection) {
