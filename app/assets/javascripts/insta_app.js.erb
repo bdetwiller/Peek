@@ -22,13 +22,13 @@ window.App = {
      App.Settings.auth = user
     }
 
-    new App.Routers.User();
+    router = new App.Routers.User();
     Backbone.history.start();
   },
 
   installMap: function () {
     var mapOptions = {
-      zoom: 12,
+      zoom: 13,
       scrollwheel: false,
       disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -43,7 +43,7 @@ window.App = {
     });
     } else {
       alert("We couldn't locate you. Welcome to San Francisco");
-      var initialLocation = new google.maps.LatLng(37.760, -122.418);
+      var initialLocation = new google.maps.LatLng(37.776811, -122.42591);
       map.setCenter(initialLocation);
     }
 

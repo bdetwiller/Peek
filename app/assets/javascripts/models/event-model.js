@@ -38,8 +38,4 @@ App.Models.Event = Backbone.Model.extend({
 
 	},
 
-	removeMarker: function() {
-		
-	} 
-
 });

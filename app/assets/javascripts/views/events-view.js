@@ -8,15 +8,27 @@ App.Views.Events = Backbone.View.extend({
 
     $.ajax({
       url: 'https://api.foursquare.com/v2/venues/trending?',
-      data: {ll: lat + "," + lng, limit: 10, radius: 10000, client_id: App.Settings.foursquareClientID,
+      data: {ll: lat + "," + lng, limit: 10, radius: 15000, client_id: App.Settings.foursquareClientID,
             client_secret: App.Settings.foursquareClientSecret, v: 20120321},
       dataType: 'json',
       success: function(response) { 
-        var venuesCollection = new App.Collections.Events(response.response.venues);
-        that.getPhotos(venuesCollection);
-        that.displayEvents(venuesCollection);
+        if(response.response.venues.length === 0) {
+          that.noVenues();
+        } else {
+          App.Store.venuesCollection = new App.Collections.Events(response.response.venues);
+          that.getPhotos(App.Store.venuesCollection);
+          that.displayEvents(App.Store.venuesCollection);
+        }
       }
     });
+  },
+
+  noVenues: function() {
+    var that = this
+    $('#sidebar').empty();
+    $('#sidebar').html(JST["gallery/novenues"]());
+
+    console.log(JST["gallery/novenues"]());
   },
 
   displayEvents: function(eventsCollection) {
@@ -25,8 +37,8 @@ App.Views.Events = Backbone.View.extend({
       id: "eventlist",
       el: "#sidebar"
     })
+    App.Store.EventsView.$el.empty();
     App.Store.EventsView.empty();
-    App.Store.EventsView.addtoSidebar();
   },
 
   getPhotos: function(eventsCollection) {
@@ -38,7 +50,7 @@ App.Views.Events = Backbone.View.extend({
     eventsCollection.each(function(venue) {
       var lat = venue.get("location").lat
       var lng = venue.get("location").lng
-      var run_flag = false 
+      var run_flag = 0 
       that.instagramRequest(min_time, venue, distance, lat, lng, run_flag);
     });
   },
@@ -51,22 +63,24 @@ App.Views.Events = Backbone.View.extend({
             distance: distance, client_id: App.Settings.instaClientID},
       dataType: 'json',
       success: function(response) { 
-        console.log(response);
-        if(response.meta.code === 200) {
-          that.handleResponse(response, venue);
-        } else if (run_flag === false) {
-          run_flag = true
+        if(response.meta.code === 200 && response.data.length === 0) {
+          App.Store.venuesCollection.remove(venue.get("id"));
+          if(App.Store.venuesCollection.length === 0) {
+            that.noVenues();
+          }
+        } else if (response.meta.code === 400 && run_flag < 3) { //if fails make request again
+          run_flag ++;
           that.instagramRequest(min_time, venue, distance, lat, lng, run_flag);
+        } else if (response.meta.code === 200) {
+          that.handleResponse(response, venue);
         }
       }
     }); 
   },
 
   handleResponse: function(response, venue) {
-    if (response.data.length === 0) {
-      $('#sidebar').removeChild('#' + venue.get("id"));
-      console.log("need to remove");
-    }
+    var that = this
+    App.Store.EventsView.addtoSidebar(venue);
     eventPhotoCollection = new App.Collections.Photos(response.data);
       eventPhotoView = new App.Views.Photos({
         collection: eventPhotoCollection,
