@@ -8,9 +8,7 @@ App.Views.Geo = Backbone.View.extend({
     var that = this
     var geoListen = google.maps.event.addListener(map, 'click', function(event){
       that.clickMarker(event.latLng);
-      var position = { lat: event.latLng.lat(), lng: event.latLng.lng() };
-
-      that.getPhotos(position);
+      that.getPhotos(event.latLng);
     });
 
     var tooltip = $("#help")
@@ -44,10 +42,11 @@ App.Views.Geo = Backbone.View.extend({
     var distance = 1500
     var time = new Date();
     var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
+    console.log(location);
 
     $.ajax({
       url: 'https://api.instagram.com/v1/media/search?callback=?',
-      data: {lat: location.lat, lng: location.lng, min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},
+      data: {lat: location.lat(), lng: location.lng(), min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},
       dataType: 'json',
       success: function(response) { 
         that.handleResponse(response);
@@ -66,19 +65,29 @@ App.Views.Geo = Backbone.View.extend({
   },
 
   addSearch: function() {
-    var that = this
+    var view = this
     var input = (document.getElementById('placesearch'));
     var autocomplete = new google.maps.places.Autocomplete(input);
 
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      var place = autocomplete.getPlace();
-      var location = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng(), dist: '1500'};
-      console.log(location);
-      that.getPhotos(location);
-      that.clickMarker(place.geometry.location);
-      map.setCenter(place.geometry.location);
-      map.setZoom(12);
-    })
+      var that = view
+      var place = autocomplete.getPlace();  
+      var location = place.geometry.location  
+      router.navigate("geo/" + location, {trigger: true})
+    });
+  },
+
+  handleQuery: function(place) {
+    var that = this   
+    var place = place.replace(/[(]/g,"").replace(/[)]/g,"");
+    var location = place.split(", ");
+    console.log("ran query");
+    var locationObject = new google.maps.LatLng(location[0], location[1]);
+    
+    that.getPhotos(locationObject);
+    that.clickMarker(locationObject);
+    map.setCenter(locationObject);
+    map.setZoom(14);
   }
 
 });

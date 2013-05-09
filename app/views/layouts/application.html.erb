@@ -5,11 +5,12 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <% if alert || notice %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% if alert %>
+    <p class="alert"><%= alert %></p>
+  <% elsif notice %>
+     <p class="notice"><%= notice %></p>
   <% end %>
-  <script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
       $('ul.nav > li').click(function (e) {
         $('ul.nav > li').removeClass('active');
@@ -32,13 +33,13 @@
       <a class="brand" href="">See what's happening</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li>
-              <a href="#explore">Explorer mode</a>
+            <li id="nav-geo">
+              <a href="#geo">Explorer mode</a>
             </li>
-            <li>
+            <li id="nav-events">
               <a href="#events">Trending places</a>
             </li>
-            <li>
+            <li id="nav-friends">
               <a href="#friends">Friends</a>
             </li>
           </ul>
