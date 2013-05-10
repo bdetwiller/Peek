@@ -27,8 +27,8 @@ App.Routers.User = Backbone.Router.extend({
 
 	events: function() {
 		google.maps.event.clearListeners(map, 'click');
-		var eventphotos = new App.Views.Events({
-		});
+		map.setZoom(13);
+		var eventphotos = new App.Views.Events({});
 		eventphotos.getTrendingVenues();
 	},
 

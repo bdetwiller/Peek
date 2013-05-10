@@ -44,18 +44,34 @@ App.Views.Geo = Backbone.View.extend({
 
   getPhotos: function(location) {
     var that = this;
-    var distance = 1500
+    var distance = 1500;
+    var lat = location.lat();
+    var lng = location.lng();
     var time = new Date();
     var min_time = Math.round((new Date(time - 24 * 3600000)).getTime()/1000);
+    var run_flag = 0; 
 
-    $.ajax({
+    that.instagramRequest(distance, lat, lng, min_time, run_flag);
+  },
+
+  instagramRequest: function(distance, lat, lng, min_time, run_flag) {
+    var that = this
+      $.ajax({
       url: 'https://api.instagram.com/v1/media/search?callback=?',
-      data: {lat: location.lat(), lng: location.lng(), min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},
+      data: {lat: lat, lng: lng, min_timestamp: min_time, distance: distance, client_id: App.Settings.instaClientID},
       dataType: 'json',
       success: function(response) { 
-        that.handleResponse(response);
+        if(response.meta.code === 200 && response.data.length === 0) {
+          that.noPhotos();
+        } else if (response.meta.code === 400 && run_flag < 3) { //if fails make request again
+          run_flag ++;
+          console.log("trying " + run_flag);
+          that.instagramRequest(distance, lat, lng, min_time, run_flag);
+        } else if (response.meta.code === 200) {
+          that.handleResponse(response);
+        }
       }
-    });
+    }); 
   },
 
   handleResponse: function(response) {
@@ -76,6 +92,7 @@ App.Views.Geo = Backbone.View.extend({
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
       var that = view
       var place = autocomplete.getPlace();  
+      console.log(place);
       var location = place.geometry.location  
       router.navigate("geo/" + location, {trigger: true})
     });
@@ -92,6 +109,10 @@ App.Views.Geo = Backbone.View.extend({
     that.clickMarker(locationObject);
     map.setCenter(locationObject);
     map.setZoom(14);
-  }
+  },
 
+  noPhotos: function() {
+    $('#sidebar').empty();
+    $('#sidebar').html(JST["gallery/nophotos"]());
+  },
 });
