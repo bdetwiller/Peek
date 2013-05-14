@@ -7,7 +7,6 @@ App.Collections.Photos = Backbone.Collection.extend({
     }));
   }
 
-
 });
 
 //ryan questions 1)model 2)organizing views within view
