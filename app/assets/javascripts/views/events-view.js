@@ -4,7 +4,6 @@ App.Views.Events = Backbone.View.extend({
     var that = this
     var lat = map.getCenter().lat()
     var lng = map.getCenter().lng()
-    console.log(lat + " " + lng);
 
     $.ajax({
       url: 'https://api.foursquare.com/v2/venues/trending?',
