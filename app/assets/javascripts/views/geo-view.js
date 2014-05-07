@@ -65,7 +65,6 @@ App.Views.Geo = Backbone.View.extend({
           that.noPhotos();
         } else if (response.meta.code === 400 && run_flag < 3) { //if fails make request again
           run_flag ++;
-          console.log("trying " + run_flag);
           that.instagramRequest(distance, lat, lng, min_time, run_flag);
         } else if (response.meta.code === 200) {
           that.handleResponse(response);
@@ -102,7 +101,6 @@ App.Views.Geo = Backbone.View.extend({
     var that = this   
     var place = place.replace(/[(]/g,"").replace(/[)]/g,"");
     var location = place.split(", ");
-    console.log("ran query");
     var locationObject = new google.maps.LatLng(location[0], location[1]);
     
     that.getPhotos(locationObject);
