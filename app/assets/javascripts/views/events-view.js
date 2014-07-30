@@ -8,7 +8,7 @@ App.Views.Events = Backbone.View.extend({
     $.ajax({
       url: 'https://api.foursquare.com/v2/venues/trending?',
       data: {ll: lat + "," + lng, limit: 10, radius: 15000, client_id: App.Settings.foursquareClientID,
-            client_secret: App.Settings.foursquareClientSecret, v: 20120321},
+            client_secret: App.Settings.foursquareClientSecret, v: 20140721},
       dataType: 'json',
       success: function(response) { 
         if(response.response.venues.length === 0) {
